@@ -3,6 +3,7 @@ import { Login } from './pages/not-logged/login/login';
 import { Home } from './pages/logged/home/home';
 import { Registration } from './pages/not-logged/registration/registration';
 import { ForgotPassword } from './pages/not-logged/forgot-password/forgot-password';
+import { CreateMovie } from './pages/logged/create-movie/create-movie';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'esqueci-minha-senha',
     component: ForgotPassword
+  },
+  {
+    path: 'novo-filme',
+    component: CreateMovie
   }
 ];
