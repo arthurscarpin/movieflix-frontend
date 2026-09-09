@@ -1,16 +1,23 @@
 <app-header />
-<div style="margin-top: 100px">
-  <a href="/novo-filme" class="btn btn-danger">Cadastrar filme</a>
-  <hr>
+
+<div class="page-actions container mt-5 mb-3">
+  <div class="d-flex justify-content-start align-items-center">
+    <a href="/novo-filme" class="btn btn-danger px-4 py-2 fw-semibold">Cadastrar filme</a>
+  </div>
 </div>
-<div>
-  <app-card
-    title="O Poderoso Chefão"
-    description="Don Corleone, o chefe da família Corleone, é o padrinho do crime organizado em Nova York. Quando um rival tenta assassinar Don Corleone, seu filho Michael se envolve no mundo do crime para proteger sua família."
-    duration="1:30h"
-    ageRating="Somente +18"
-    [approvalRating]="67"
-    providerLogo="/images/partners/claro.png"
-    [isTop10]="true"
-  />
-</div>
+
+<hr class="section-divider" />
+
+<section class="movie-grid container-fluid px-3 px-md-4">
+  @for (movie of movies; track movie.title) {
+    <app-card
+      [title]="movie.title"
+      [description]="movie.description"
+      [duration]="movie.duration"
+      [ageRating]="movie.ageRating"
+      [approvalRating]="movie.approvalRating"
+      [providerLogo]="movie.providerLogo"
+      [isTop10]="movie.isTop10"
+    />
+  }
+</section>
