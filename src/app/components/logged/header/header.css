@@ -1,8 +1,5 @@
 #header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
+    gap: 1rem;
     background-color: #000;
     color: #fff;
 }
@@ -14,34 +11,47 @@
 .main-nav {
     margin: 0;
     padding: 0;
+    display: block;
 }
 
 .main-nav .nav {
     margin: 0;
     padding: 0;
     list-style: none;
-    display: flex;
-    gap: 1.5rem;
 }
 
 .main-nav .nav-link {
     color: #fff;
     text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    display: inline-block;
 }
 
-.main-nav .nav-link:hover {
-    color: #e50914;
+.main-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: #e50914;
+    transition: width 0.3s ease;
 }
 
+.main-nav .nav-link:hover,
 .main-nav .nav-link.active {
     color: #e50914;
+    transform: translateY(-1px);
+}
+
+.main-nav .nav-link:hover::after,
+.main-nav .nav-link.active::after {
+    width: 100%;
 }
 
 .search-box {
-    position: relative;
-    margin-right: 1rem;
+    min-width: 220px;
 }
 
 .search-box input {
@@ -68,60 +78,84 @@
 .profile .profile-img {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
     cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile .profile-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.7);
 }
 
 .menu-toggle {
     display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 0.375rem;
+    background: transparent;
     color: #fff;
-    background: none;
-    border: none;
-    padding: 0.5rem;
+    transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
 }
 
-/* Media queries para responsividade */
-@media screen and (max-width: 1024px) {
-    #header {
-        padding: 1rem;
-    }
-
-    .search-box input {
-        width: 150px;
-    }
+.menu-toggle:hover {
+    border-color: rgba(229, 9, 20, 0.9);
+    background-color: rgba(229, 9, 20, 0.12);
+    transform: scale(1.03);
 }
 
-@media screen and (max-width: 768px) {
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: middle;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+@media screen and (max-width: 1330px) {
     .main-nav {
         display: none;
         position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
+        top: calc(100% + 0.5rem);
+        left: 1rem;
+        right: 1rem;
         background-color: #000;
         padding: 1rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 999;
     }
 
     .main-nav.active {
-        display: block;
-        z-index: 999;
-        top: 70px;
+        display: block !important;
     }
 
     .main-nav .nav {
         flex-direction: column;
+        align-items: flex-start;
         gap: 1rem;
     }
 
-    .main-nav .nav-item {
+    .main-nav .nav-item,
+    .main-nav .nav-link {
         width: 100%;
-        text-align: center;
     }
 
     .menu-toggle {
         display: block;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #header {
+        flex-wrap: nowrap;
+    }
+
+    .header-left,
+    .header-right {
+        gap: 0.5rem;
     }
 
     .search-box {
@@ -130,8 +164,12 @@
 }
 
 @media screen and (max-width: 480px) {
+    #header {
+        padding: 0.75rem 1rem;
+    }
+
     .logo img {
-        height: 50px;
+        height: 45px;
     }
 
     .profile .profile-img {

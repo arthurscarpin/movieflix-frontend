@@ -1,44 +1,55 @@
-<div id="header">
-  <div class="d-flex align-items-center gap-2">
+<header id="header" class="d-flex align-items-center justify-content-between px-3 px-xl-4 py-3 bg-black text-white position-relative">
+  <div class="header-left d-flex align-items-center gap-3">
     <div class="logo">
-      <img src="/images/logo.png" alt="logo" />
+      <img class="img-fluid" src="/images/logo.png" alt="logo" />
     </div>
-    <nav class="main-nav">
-      <ul class="nav">
+
+    <nav id="mainNav" class="main-nav" [class.active]="menuOpen">
+      <ul class="nav align-items-center gap-3">
         <li class="nav-item">
-          <a class="nav-link" href="#">Início</a>
+          <a class="nav-link text-white" href="#" (click)="closeMenu()">Início</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Séries</a>
+          <a class="nav-link text-white" href="#" (click)="closeMenu()">Séries</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Filmes</a>
+          <a class="nav-link text-white" href="#" (click)="closeMenu()">Filmes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Originais</a>
+          <a class="nav-link text-white" href="#" (click)="closeMenu()">Originais</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Novidades</a>
+          <a class="nav-link text-white" href="#" (click)="closeMenu()">Novidades</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/novo-filme">Novo Filme</a>
+          <a class="nav-link text-white" href="/novo-filme" (click)="closeMenu()">Novo Filme</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sair</a>
+          <a class="nav-link text-white" href="#" (click)="closeMenu()">Sair</a>
         </li>
       </ul>
     </nav>
   </div>
-  <div class="d-flex align-items-center gap-2">
-    <button class="menu-toggle">
-      <i class="bi bi-list"> </i>
+
+  <div class="header-right d-flex align-items-center gap-2 ms-auto">
+    <button
+      class="navbar-toggler menu-toggle"
+      type="button"
+      aria-label="Abrir menu"
+      aria-controls="mainNav"
+      [attr.aria-expanded]="menuOpen"
+      (click)="toggleMenu()"
+    >
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="search-box">
+
+    <div class="search-box position-relative d-none d-lg-block">
       <i class="bi bi-search"></i>
       <input type="text" class="form-control" placeholder="Digite o nome do filme" />
     </div>
+
     <div class="profile">
-      <img src="/images/profile.png" alt="perfil" class="profile-img" />
+      <img src="/images/profile.png" alt="perfil" class="profile-img rounded-circle" />
     </div>
   </div>
-</div>
+</header>
